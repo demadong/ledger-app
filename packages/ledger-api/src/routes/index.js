@@ -5,7 +5,6 @@ const
 
 
 const init = (server) => {
-
   server.get('*', (req, res, next) => {
     console.log('req made to: ', -req.originalUrl);
     return next();
