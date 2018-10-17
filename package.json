@@ -1,0 +1,12 @@
+{
+  "name": "ledger-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "mkim5 <matthewkim93@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "create-react-app": "^2.0.3",
+    "global": "^4.3.2"
+  }
+}
