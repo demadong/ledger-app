@@ -1,7 +1,6 @@
 'use strict';
 const hl = require('hledger');
 const path = require('path');
-const _ = require('lodash');
 
 const file = path.resolve('2018.ledger');
 
