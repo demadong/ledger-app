@@ -1,7 +1,7 @@
 const
       apiRoute = require('./api')
-      homeRoute = require('./home')
-      errorRoute = require('./error');
+//      homeRoute = require('./home')
+//      errorRoute = require('./error');
 
 
 const init = (server) => {
@@ -15,8 +15,8 @@ const init = (server) => {
   });
 
   server.use('/api', apiRoute);
-  server.use('/home', homeRoute);
-  server.use('/error', errorRoute);
+//  server.use('/home', homeRoute);
+//  server.use('/error', errorRoute);
 };
 
 module.exports = {
