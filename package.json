@@ -7,8 +7,6 @@
   "devDependencies": {},
   "dependencies": {
     "create-react-app": "^2.0.3",
-    "global": "^4.3.2",
-    "lodash": "^4.17.11",
     "ramda": "^0.25.0"
   }
 }
