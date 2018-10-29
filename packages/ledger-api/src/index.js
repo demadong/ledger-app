@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const expressHandlebars = require('express-handlebars');
 
-
 module.exports = () => {
   const server = express();
   const create = (config) => {
