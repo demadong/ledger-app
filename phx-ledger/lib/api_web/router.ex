@@ -8,4 +8,6 @@ defmodule ApiWeb.Router do
   scope "/api", ApiWeb do
     pipe_through :api
   end
+
+  resources "/users", UserController, except: [:new, :edit]
 end
