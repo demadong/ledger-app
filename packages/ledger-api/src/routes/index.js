@@ -2,11 +2,11 @@ const
       apiRoute = require('./api')
 //      homeRoute = require('./home')
 //      errorRoute = require('./error');
-
+const basicAuth = require('express-basic-auth');
 
 const init = (server) => {
   server.get('*', (req, res, next) => {
-    console.log('req made to: ', -req.originalUrl);
+    console.log('req made to: ', req.originalUrl);
     return next();
   });
 
@@ -14,6 +14,14 @@ const init = (server) => {
     res.redirect('/home');
   });
 
+  server.use(
+    basicAuth({
+      users: {
+        'admin': 'admin'
+      }
+    })
+  );
+  
   server.use('/api', apiRoute);
 //  server.use('/home', homeRoute);
 //  server.use('/error', errorRoute);
