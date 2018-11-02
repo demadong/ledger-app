@@ -1,0 +1,56 @@
+Y 2018
+
+account assets:cash:capital one
+account assets:cash:simple
+account assets:cash:venmo
+account assets:cash:on hand
+account assets:saving
+account liabilities:credit cards:freedom
+account liabilities:credit cards:sapphire
+account liabilities:credit cards:amex
+account liabilities:credit cards:citi
+account liabilities:debt:upstart 2017
+account liabilities:debt:perkins
+account liabilities:debt:stafford
+
+alias assets:cash:capital one = current
+
+account current:month:rent
+account current:month:insurance
+account current:month:utilities
+account current:month:internet
+account current:month:groceries
+account current:month:eating out
+account current:month:entertainment
+account current:month:medical
+account current:month:subscriptions
+account current:month:phone
+account current:month:debt payments
+account current:month:discretionary
+
+
+10/18 opening balances
+  assets:cash:capital one  $1000
+  assets:cash:simple  $1000
+  assets:cash:venmo  $100
+  assets:saving  $1000
+  liabilities:credit cards:freedom  $100
+  liabilities:credit cards:sapphire  $100 
+  liabilities:credit cards:amex  $100
+  liabilities:credit cards:citi  $100
+  liabilities:debt:upstart 2017  $10000.00
+  liabilities:debt:perkins  $3700
+  liabilities:debt:stafford  $11847
+  equity
+
+10/18 budget
+  current:month:rent  $1200
+  current:month:utilities  $100
+  current:month:groceries  $100
+  current:month:insurance  $264.01
+  equity:budget  -$1664.01
+
+
+11/1 november rent
+  expenses:rent  $1200.00
+  current:month:rent
