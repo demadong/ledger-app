@@ -13,7 +13,7 @@ account liabilities:debt:upstart 2017
 account liabilities:debt:perkins
 account liabilities:debt:stafford
 
-alias assets:cash:capital one = current
+alias current = assets:cash:capital one
 
 account current:month:rent
 account current:month:insurance
