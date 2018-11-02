@@ -35,7 +35,6 @@ const createEntry = async ({
   const data = hl.tableize(await hl(['-f', file, 'print']));
   const { txnidx: latestID }= R.takeLast(1, data)[0];
   const entries = R.filter(R.propEq('txnidx', latestID))(data);
-  console.log(entries);
   return res.json({ entries });
 };
 
