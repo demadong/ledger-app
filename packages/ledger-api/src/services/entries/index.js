@@ -7,11 +7,13 @@ const { promisify } = require('util');
 const afp = promisify(appendFile);
 const R = require('ramda');
 
+const { loadEntries, normalizeTransactions } = require('./util');
+
 const file = path.resolve('2018.ledger');
 
 const listEntries = async (req, res) => {
-  const data = hl.tableize(await hl(['-f', file, 'print']));
-  return res.json(data);
+  const data = R.pipe(loadEntries, normalizeTransactions)(file);
+  return res.json(await data);
 };
 
 const getEntriesById = async ({params: { id }}, res) => {
@@ -35,7 +37,6 @@ const createEntry = async ({
   const data = hl.tableize(await hl(['-f', file, 'print']));
   const { txnidx: latestID }= R.takeLast(1, data)[0];
   const entries = R.filter(R.propEq('txnidx', latestID))(data);
-  console.log(entries);
   return res.json({ entries });
 };
 
