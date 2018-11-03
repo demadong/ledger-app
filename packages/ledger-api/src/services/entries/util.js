@@ -9,14 +9,14 @@ const normalizeTransactions = async (txns) => {
   const groupByTransactions = R.groupBy((txn) => txn.txnidx);
   const generateRawTransaction = R.reduce((a, b) => {
     const entryAsString = `  ${b.account}  ${b.commodity}${b.amount}`;
-    return R.isNil(a) ?
-      `${b.date} ${b.description}\n  ${entryAsString}` :
-      `${a}\n  ${entryAsString}`;
+    return R.isNil(a) 
+      ? `${b.date} ${b.description}\n  ${entryAsString}` 
+      : `${a}\n  ${entryAsString}`;
   }, null);
-  const addRawTransactionToTransactionMap = R.map((txn) => (
+  const addRawTransactionToTransactionMap = R.map((txns) => (
     {
-      transactions: txn,
-      rawTransaction: generateRawTransaction(txn)
+      txns,
+      raw: generateRawTransaction(txns)
     }
   ));
 
