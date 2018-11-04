@@ -34,7 +34,7 @@ const createEntry = async ({
   const entry = `\n${date} ${description}\n  ${destination}  \$${amount}\n  ${source}\n`
 
   await afp(file, entry);
-  const data = hl.tableize(await hl(['-f', file, 'print']));
+  const data = await loadAndNormalizeEntries(file);
   const { txnidx: latestID }= R.takeLast(1, data)[0];
   const entries = R.filter(R.propEq('txnidx', latestID))(data);
   return res.json({ entries });
