@@ -23,7 +23,10 @@ const normalizeTransactions = async (txns) => {
   return R.compose(addRawTransactionToTransactionMap, groupByTransactions)(await txns);
 }
 
+const loadAndNormalizeEntries = R.compose(normalizeTransactions, loadEntries);
+
 module.exports = {
   loadEntries,
-  normalizeTransactions
+  normalizeTransactions,
+  loadAndNormalizeEntries
 };
