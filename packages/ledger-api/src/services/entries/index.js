@@ -31,13 +31,12 @@ const createEntry = async ({
     amount
   } 
 }, res) => {
-  const entry = `\n${date} ${description}\n  ${destination}  \$${amount}\n  ${source}\n`
+  const entryStr = `\n${date} ${description}\n  ${destination}  \$${amount}\n  ${source}\n`
 
-  await afp(file, entry);
+  await afp(file, entryStr);
   const data = await loadAndNormalizeEntries(file);
-  const { txnidx: latestID }= R.takeLast(1, data)[0];
-  const entries = R.filter(R.propEq('txnidx', latestID))(data);
-  return res.json({ entries });
+  const entry = R.nth(-1, data);
+  return res.json(entry);
 };
 
 const updateEntryById = (req, res) => {};

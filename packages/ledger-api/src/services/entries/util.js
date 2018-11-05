@@ -4,7 +4,10 @@ const hl = require('hledger');
 
 const loadEntries = async (file) => hl.tableize(await hl(['-f', file, 'print']));
 
-const groupByTransactions = R.groupBy((txn) => txn.txnidx);
+const groupByTransactions = R.compose(
+  Object.values,
+  R.groupBy((txn) => Number(txn.txnidx) - 1)
+)
 
 const generateRawTransaction = R.reduce((a, b) => {
   const entryAsString = `  ${b.account}  ${b.commodity}${b.amount}`;
