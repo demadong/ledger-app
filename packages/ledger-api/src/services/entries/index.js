@@ -7,19 +7,19 @@ const { promisify } = require('util');
 const afp = promisify(appendFile);
 const R = require('ramda');
 
-const { loadEntries, normalizeTransactions } = require('./util');
+const { loadAndNormalizeEntries } = require('./util');
 
 const file = path.resolve('2018.ledger');
 
 const listEntries = async (req, res) => {
-  const data = R.pipe(loadEntries, normalizeTransactions)(file);
-  return res.json(await data);
+  const data = await loadAndNormalizeEntries(file);
+  return res.json(data);
 };
 
 const getEntriesById = async ({params: { id }}, res) => {
-  const data = hl.tableize(await hl(['-f', file, 'print']));
-  const entries = R.filter(R.propEq('txnidx', id))(data);
-  return res.json({ entries });
+  const data = await loadAndNormalizeEntries(file);
+  
+  return res.json(data[id]);
 };
 
 const createEntry = async ({
@@ -31,13 +31,12 @@ const createEntry = async ({
     amount
   } 
 }, res) => {
-  const entry = `\n${date} ${description}\n  ${destination}  \$${amount}\n  ${source}\n`
+  const entryStr = `\n${date} ${description}\n  ${destination}  \$${amount}\n  ${source}\n`
 
-  await afp(file, entry);
-  const data = hl.tableize(await hl(['-f', file, 'print']));
-  const { txnidx: latestID }= R.takeLast(1, data)[0];
-  const entries = R.filter(R.propEq('txnidx', latestID))(data);
-  return res.json({ entries });
+  await afp(file, entryStr);
+  const data = await loadAndNormalizeEntries(file);
+  const entry = R.nth(-1, data);
+  return res.json(entry);
 };
 
 const updateEntryById = (req, res) => {};
