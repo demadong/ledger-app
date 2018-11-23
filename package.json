@@ -8,5 +8,8 @@
   "dependencies": {
     "create-react-app": "^2.0.3",
     "ramda": "^0.25.0"
+  },
+  "scripts": {
+    "start": "lerna run start"
   }
 }

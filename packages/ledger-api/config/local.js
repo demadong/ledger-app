@@ -2,7 +2,7 @@
 
 module.exports = {
   hostname: 'localhost',
-  port: 3000,
+  port: 8080,
   viewDir: './app/views'
 };
 
